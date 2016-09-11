@@ -1,0 +1,162 @@
+[
+	{
+		"id": 1,
+		"direction": "outbound",
+		"departure": "09:00",
+		"arrival": "10:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 2,
+		"direction": "outbound",
+		"departure": "10:00",
+		"arrival": "11:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 3,
+		"direction": "outbound",
+		"departure": "11:00",
+		"arrival": "12:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 4,
+		"direction": "outbound",
+		"departure": "12:00",
+		"arrival": "13:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 11,
+		"direction": "inbound",
+		"departure": "10:00",
+		"arrival": "11:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 12,
+		"direction": "inbound",
+		"departure": "11:00",
+		"arrival": "12:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 13,
+		"direction": "inbound",
+		"departure": "12:00",
+		"arrival": "13:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	},
+	{
+		"id": 14,
+		"direction": "inbound",
+		"departure": "13:00",
+		"arrival": "14:10",
+		"prices": {
+			"normal": {
+				"junior": 10,
+				"adult": 20
+			},
+			"über": {
+				"junior": 30,
+				"adult": 40
+			},
+			"awesome": {
+				"junior": 50,
+				"adult": 100
+			}
+		}
+	}
+]

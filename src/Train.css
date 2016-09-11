@@ -1,0 +1,13 @@
+.train {
+
+}
+
+.train__details {
+	display: inline-block;
+	width: 25%;
+}
+
+.train__prices {
+	display: inline-block;
+	width: 75%;
+}

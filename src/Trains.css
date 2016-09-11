@@ -1,0 +1,7 @@
+.trains {
+	list-style: none;
+	padding: 0;
+}
+.trains__item {
+	border: solid 1px lightblue;
+}
