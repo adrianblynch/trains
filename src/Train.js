@@ -12,7 +12,11 @@ export default class Train extends Component {
 				<span className="train__arrival">{ this.props.arrival }</span>
 			</div>
 			<div className="train__prices">
-				<TrainPrices { ...this.props.prices } direction={ this.props.direction } />
+				<TrainPrices
+					{ ...this.props.prices }
+					direction={ this.props.direction }
+					trainId={ this.props.trainId }
+				/>
 			</div>
 		</div>
 	}
