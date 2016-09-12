@@ -1,8 +1,8 @@
 {
-	"outboundDate": "2016-10-10",
-	"inboundDate": "2016-10-12",
 	"origin": "London",
 	"destination": "Paris",
+	"outboundDate": "2016-10-10",
+	"inboundDate": "2016-10-12",
 	"adults": 2,
-	"youths": 1
+	"juniors": 1
 }

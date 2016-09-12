@@ -3,27 +3,48 @@ import './Basket.css'
 
 export default class Basket extends Component {
 
-	renderLeg(direction, train) {
-		return <div className="basket-leg">
-			{ train ? this.renderTrain(train) : `Please choose your ${direction} train` }
-		</div>
+	renderPrice(count, passengerType, priceType, price) {
+		return <li>
+			{ count } x { passengerType } { priceType } (£{ price }) tickets - £{ count * price }
+		</li>
 	}
 
-	renderTrain(train) {
+	renderLeg(origin, destination, date, train, passengerTypes, adults, juniors) {
 		return <div>
-			{ train.departure } - { train.arrival }
-			{ this.renderPrices(train.prices) }
+			<p> { origin } to { destination }</p>
+			<p>{ date } 12:00 - 13:00</p>
+			<ul>
+				{ this.renderPrice(adults, 'adult', train.selectedPrice, train.prices[train.selectedPrice].adult) }
+				{ this.renderPrice(juniors, 'junior', train.selectedPrice, train.prices[train.selectedPrice].junior) }
+			</ul>
 		</div>
 	}
 
-	renderPrices(prices) {
-		return JSON.stringify(prices, null, 2)
+	renderPrompt(direction) {
+		return <p>Please choose your { direction } train</p>
 	}
 
 	render() {
+		const {
+			searchQuery: { origin, destination, outboundDate, inboundDate, adults, juniors },
+			outboundTrain,
+			inboundTrain,
+			passengerTypes
+		} = this.props
+
 		return <div>
-			{ this.renderLeg('Outbound', this.props.outboundTrain) }
-			{ this.renderLeg('Inbound', this.props.inboundTrain) }
+			<h3>Outbound</h3>
+			{
+				outboundTrain ?
+				this.renderLeg(origin, destination, outboundDate, outboundTrain, passengerTypes, adults, juniors) :
+				this.renderPrompt('outbound')
+			}
+			<h3>Inbound</h3>
+			{
+				inboundTrain ?
+				this.renderLeg(destination, origin, inboundDate, inboundTrain, passengerTypes, adults, juniors) :
+				this.renderPrompt('inbound')
+			}
 		</div>
 	}
 }

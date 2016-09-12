@@ -40,7 +40,7 @@ export default class Trains extends Component {
 											/>
 										</span>
 										<span className="train-price__display-price">
-											£{ train.prices[priceType].adult }
+											£{ train.prices[priceType].adult } (£{ train.prices[priceType].junior })
 										</span>
 									</div>
 								</li>)

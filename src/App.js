@@ -4,6 +4,7 @@ import Basket from './Basket'
 import './styles.css'
 import trains from './trains.json'
 import priceTypes from './priceTypes.json'
+import passengerTypes from './passengerTypes.json'
 import searchQuery from './searchQuery.json'
 
 class App extends Component {
@@ -12,13 +13,22 @@ class App extends Component {
 		super()
 		this.state = {
 			trains,
+			searchQuery,
 			priceTypes,
-			searchQuery
+			passengerTypes
 		}
 	}
 
 	getSearchQuery() {
 		return this.state.searchQuery
+	}
+
+	getPriceTypes() {
+		return this.state.priceTypes
+	}
+
+	getPassengerTypes() {
+		return this.state.passengerTypes
 	}
 
 	getOutboundTrains() {
@@ -61,6 +71,7 @@ class App extends Component {
 			<h2>Basket</h2>
 			<Basket
 				searchQuery={ this.getSearchQuery() }
+				passengerTypes={ this.getPassengerTypes() }
 				outboundTrain={ this.getSelectedOutboundTrain() }
 				inboundTrain={ this.getSelectedInboundTrain() }
 			/>
@@ -74,7 +85,7 @@ class App extends Component {
 			}
 			<Trains
 				direction="outbound"
-				priceTypes={ this.state.priceTypes }
+				priceTypes={ this.getPriceTypes() }
 				trains={ this.getOutboundTrains() }
 				trainPriceHandler={ this.trainPriceHandler.bind(this) }
 			/>
@@ -88,7 +99,7 @@ class App extends Component {
 			}
 			<Trains
 				direction="inbound"
-				priceTypes={ this.state.priceTypes }
+				priceTypes={ this.getPriceTypes() }
 				trains={ this.getInboundTrains() }
 				trainPriceHandler={ this.trainPriceHandler.bind(this) }
 			/>
