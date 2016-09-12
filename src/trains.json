@@ -4,6 +4,7 @@
 		"direction": "outbound",
 		"departure": "09:00",
 		"arrival": "10:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -24,6 +25,7 @@
 		"direction": "outbound",
 		"departure": "10:00",
 		"arrival": "11:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -44,6 +46,7 @@
 		"direction": "outbound",
 		"departure": "11:00",
 		"arrival": "12:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -64,6 +67,7 @@
 		"direction": "outbound",
 		"departure": "12:00",
 		"arrival": "13:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -84,6 +88,7 @@
 		"direction": "inbound",
 		"departure": "10:00",
 		"arrival": "11:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -104,6 +109,7 @@
 		"direction": "inbound",
 		"departure": "11:00",
 		"arrival": "12:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -124,6 +130,7 @@
 		"direction": "inbound",
 		"departure": "12:00",
 		"arrival": "13:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,
@@ -144,6 +151,7 @@
 		"direction": "inbound",
 		"departure": "13:00",
 		"arrival": "14:10",
+		"selectedPrice": null,
 		"prices": {
 			"normal": {
 				"junior": 10,

@@ -5,17 +5,20 @@ export default class TrainPrices extends Component {
 
 	constructor() {
 		super()
-		this.types = ['normal', 'über', 'awesome']
+		this.priceTypes = ['normal', 'über', 'awesome']
 	}
 
 	render() {
 		return <div>
-			{this.types.map(type =>
+			{this.priceTypes.map(priceType =>
 				<TrainPrice
-					type={ type }
-					{ ...this.props[type] }
+					key={ priceType }
+					type={ priceType }
+					{ ...this.props[priceType] }
 					trainId={ this.props.trainId }
 					direction={ this.props.direction }
+					trainPriceHandler={ this.props.trainPriceHandler }
+					selected={ this.props.selectedPrice === priceType }
 				/>
 			)}
 		</div>

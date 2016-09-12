@@ -3,11 +3,22 @@ import './TrainPrice.css'
 
 export default class TrainPrice extends Component {
 
+	getName() {
+		return `${this.props.direction}`
+	}
+
+	getValue() {
+		return `${this.props.direction}_${this.props.trainId}_${this.props.type}`
+	}
+
+	onClick(e) {
+		this.props.trainPriceHandler(this.getValue())
+	}
+
 	render() {
-		console.log(JSON.stringify(this.props, null, 2))
-		return <div className="train-price">
+		return <div className="train-price" onClick={ this.onClick.bind(this) }>
 			{ this.props.type }<br />
-			<input type="radio" /><br />
+			<input type="radio" name={ this.getName() } value={ this.getValue() } checked={ this.props.selected } /><br />
 			£{ this.props.adult }
 		</div>
 	}

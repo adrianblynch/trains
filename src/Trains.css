@@ -2,6 +2,73 @@
 	list-style: none;
 	padding: 0;
 }
-.trains__item {
-	border: solid 1px lightblue;
+
+.train {
+	display: flex;
+	border: solid 1px black;
+	margin: 2px;
+	min-height: 100px;
+}
+
+.train--selected {
+	background-color: #eee;
+}
+
+.train__details {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	border: solid 1px black;
+	list-style: none;
+	padding: 0;
+}
+
+.train__details span {
+	display: inline-block;
+}
+
+.train__prices {
+	display: flex;
+	justify-content: space-around;
+	width: 75%;
+	border: solid 1px black;
+	list-style: none;
+	padding: 0;
+}
+
+.train-price {
+	border: solid 1px black;
+	margin: 2px;
+	width: 33%;
+}
+
+.train-price__hitarea {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	text-align: center;
+	border: solid 1px black;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.train-price__type {
+	width: 100%;
+	background-color: #ccc;
+	text-transform: capitalize;
+	padding: 4px 2px 4px 2px;
+}
+
+.train-price__input {
+
+}
+
+.train-price__display-price {
+	width: 100%;
+	background-color: #ccc;
+	padding: 4px 2px 4px 2px;
 }
