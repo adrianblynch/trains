@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TrainsHeader from './TrainsHeader'
 import Trains from './Trains'
 import Basket from './Basket'
 import './styles.css'
@@ -31,12 +32,16 @@ class App extends Component {
 		return this.state.passengerTypes
 	}
 
+	getTrains() {
+		return this.state.trains
+	}
+
 	getOutboundTrains() {
-		return this.state.trains.filter(train => train.direction === 'outbound')
+		return this.getTrains().filter(train => train.direction === 'outbound')
 	}
 
 	getInboundTrains() {
-		return this.state.trains.filter(train => train.direction === 'inbound')
+		return this.getTrains().filter(train => train.direction === 'inbound')
 	}
 
 	getSelectedOutboundTrain() {
@@ -49,9 +54,21 @@ class App extends Component {
 
 	trainPriceHandler(selectedTrainPrice) {
 		const [direction, trainId, price] = selectedTrainPrice.split('_') // outbound_1_awesome
-		const trains = [...this.state.trains].map(train => {
+		const trains = [...this.getTrains()].map(train => {
 			if (train.direction === direction) {
 				return { ...train, selectedPrice: train.id === parseInt(trainId, 10) ? price : null }
+			}
+			return train
+		})
+
+		this.setState({ trains })
+	}
+
+	clearSelectionHandler(direction) {
+		console.log(direction)
+		const trains = [...this.getTrains()].map(train => {
+			if (train.direction === direction && train.selectedPrice) {
+				return { ...train, selectedPrice: null }
 			}
 			return train
 		})
@@ -66,42 +83,39 @@ class App extends Component {
 	}
 
 	render() {
+
 		return <div>
-			<h1>Trains</h1>
-			<h2>Basket</h2>
-			<Basket
-				searchQuery={ this.getSearchQuery() }
-				passengerTypes={ this.getPassengerTypes() }
-				outboundTrain={ this.getSelectedOutboundTrain() }
-				inboundTrain={ this.getSelectedInboundTrain() }
+			<TrainsHeader
+				direction="Outbound"
+				date={ this.getSearchQuery().outboundDate }
+				from={ this.getSearchQuery().origin }
+				to={ this.getSearchQuery().destination }
 			/>
-			{
-				this.renderTrainsHeader(
-					"Outbound",
-					this.getSearchQuery().outboundDate,
-					this.getSearchQuery().origin,
-					this.getSearchQuery().destination
-				)
-			}
 			<Trains
 				direction="outbound"
 				priceTypes={ this.getPriceTypes() }
 				trains={ this.getOutboundTrains() }
 				trainPriceHandler={ this.trainPriceHandler.bind(this) }
 			/>
-			{
-				this.renderTrainsHeader(
-					"Inbound",
-					this.getSearchQuery().inboundDate,
-					this.getSearchQuery().destination,
-					this.getSearchQuery().origin
-				)
-			}
+			<button onClick={this.clearSelectionHandler.bind(this, 'outbound')}>Clear selection</button>
+			<TrainsHeader
+				direction="Inbound"
+				date={ this.getSearchQuery().inboundDate }
+				from={ this.getSearchQuery().destination }
+				to={ this.getSearchQuery().origin }
+			/>
 			<Trains
 				direction="inbound"
 				priceTypes={ this.getPriceTypes() }
 				trains={ this.getInboundTrains() }
 				trainPriceHandler={ this.trainPriceHandler.bind(this) }
+			/>
+			<button onClick={this.clearSelectionHandler.bind(this, 'inbound')}>Clear selection</button>
+			<Basket
+				searchQuery={ this.getSearchQuery() }
+				passengerTypes={ this.getPassengerTypes() }
+				outboundTrain={ this.getSelectedOutboundTrain() }
+				inboundTrain={ this.getSelectedInboundTrain() }
 			/>
 		</div>
 	}

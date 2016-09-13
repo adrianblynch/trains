@@ -1,3 +1,50 @@
-.basket-leg {
+.basket {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	text-align: left;
+	background-color: #eee;
+	padding: 10px;
+}
 
+.basket__header {
+	flex: 1 100%;
+	margin: 0;
+}
+
+.basket__total {
+	flex: 1 100%;
+	text-align: center;
+	margin: 20px 0 10px 0;
+	padding: 10px;
+	background-color: #e6e6e6;
+}
+
+.basket__proceed {
+	flex: 1 100%;
+	text-align: center;
+	margin: 10px 0 20px 0;
+	padding: 10px;
+	background-color: #e6e6e6;
+}
+
+.basket__proceed button {
+	width: 50%;
+	/*height: 3em;*/
+	font-size: 1em;
+}
+
+.basket-leg {
+	width: 48%;
+	background-color: #e6e6e6;
+}
+
+.basket-leg__header {
+	margin: 0;
+}
+
+.basket-prices {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }

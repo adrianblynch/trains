@@ -44,6 +44,10 @@
 	width: 33%;
 }
 
+.train-price--selected {
+	background-color: yellow;
+}
+
 .train-price__hitarea {
 	display: flex;
 	flex-direction: column;

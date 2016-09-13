@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Train from './Train'
 import './Trains.css'
 
 export default class Trains extends Component {
@@ -28,22 +27,25 @@ export default class Trains extends Component {
 						</div>
 						<ul className="train__prices">
 							{
-								this.props.priceTypes.map(priceType => <li key={ priceType } className="train-price">
-									<div className="train-price__hitarea" onClick={ this.trainPriceOnClick.bind(this, train.id, priceType) }>
-										<span className="train-price__type">{ priceType }</span>
-										<span className="train-price__input">
-											<input
-												type="radio"
-												name={ this.trainPriceName() }
-												value={ this.trainPriceValue(train.id, priceType) }
-												checked={ train.selectedPrice === priceType }
-											/>
-										</span>
-										<span className="train-price__display-price">
-											£{ train.prices[priceType].adult } (£{ train.prices[priceType].junior })
-										</span>
-									</div>
-								</li>)
+								this.props.priceTypes.map(priceType =>
+									<li key={ priceType } className={ train.selectedPrice === priceType ? 'train-price train-price--selected' : 'train-price' }>
+										<label className="train-price__hitarea" onClick={ this.trainPriceOnClick.bind(this, train.id, priceType) }>
+											<span className="train-price__type">{ priceType }</span>
+											<span className="train-price__input">
+												<input
+													type="radio"
+													name={ this.trainPriceName() }
+													value={ this.trainPriceValue(train.id, priceType) }
+													checked={ train.selectedPrice === priceType }
+													readOnly
+												/>
+											</span>
+											<span className="train-price__display-price">
+												£{ train.prices[priceType].adult } (£{ train.prices[priceType].junior })
+											</span>
+										</label>
+									</li>
+								)
 							}
 						</ul>
 					</li>

@@ -151,7 +151,7 @@
 		"direction": "inbound",
 		"departure": "13:00",
 		"arrival": "14:10",
-		"selectedPrice": null,
+		"selectedPrice": "awesome",
 		"prices": {
 			"normal": {
 				"junior": 10,
