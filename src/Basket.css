@@ -44,7 +44,25 @@
 }
 
 .basket-prices {
+	display: flex;
+	flex-direction: column;
 	list-style: none;
 	margin: 0;
 	padding: 0;
+}
+
+.basket-prices__sub-total {
+	display: inline;
+	text-align: right;
+	border-bottom: 0;
+}
+
+.basket-price {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: solid 1px lightgrey;
+}
+
+.basket-price__sub-total {
+	padding-left: 10px;
 }

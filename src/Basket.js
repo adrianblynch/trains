@@ -5,25 +5,25 @@ import FormattedDate from './FormattedDate'
 export default class Basket extends Component {
 
 	renderPrice(count, passengerType, priceType, price) {
-		return <li>
-			{ count } x { passengerType } { priceType } (£{ price }) tickets - £{ count * price }
+		return <li className="basket-price">
+			<span>{ count } x { passengerType } { priceType } (£{ price }) tickets</span>
+			<span className="basket-price__sub-total">£{ count * price }</span>
 		</li>
 	}
 
-	renderLegTotal() {
-		return <li>
-			SUB TOTAL TO COME
-		</li>
+	renderLegTotal(subTotal) {
+		return <li className="basket-prices__sub-total">£{ subTotal }</li>
 	}
 
 	renderLeg(origin, destination, date, train, passengerTypes, adults, juniors) {
+		const subTotal = (adults * train.prices[train.selectedPrice].adult) + (juniors * train.prices[train.selectedPrice].junior)
 		return <div>
 			<p> { origin } to { destination }</p>
 			<p><FormattedDate dateString={ date } /> { train.departure } - { train.arrival }</p>
 			<ul className="basket-prices">
 				{ this.renderPrice(adults, 'adult', train.selectedPrice, train.prices[train.selectedPrice].adult) }
 				{ this.renderPrice(juniors, 'junior', train.selectedPrice, train.prices[train.selectedPrice].junior) }
-				{ this.renderLegTotal() }
+				{ this.renderLegTotal(subTotal) }
 			</ul>
 		</div>
 	}
