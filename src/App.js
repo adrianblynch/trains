@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
-import TrainsHeader from './TrainsHeader'
-import Trains from './Trains'
-import Basket from './Basket'
+import { BrowserRouter, Match, Miss } from 'react-router'
+import Search from './Search'
+import Checkout from './Checkout'
+import Confirmation from './Confirmation'
 import './styles.css'
+import searchQuery from './searchQuery.json'
 import trains from './trains.json'
 import priceTypes from './priceTypes.json'
-import passengerTypes from './passengerTypes.json'
-import searchQuery from './searchQuery.json'
 
-class App extends Component {
+export default class App extends Component {
 
 	constructor() {
 		super()
 		this.state = {
 			trains,
 			searchQuery,
-			priceTypes,
-			passengerTypes
+			priceTypes
 		}
 	}
 
@@ -26,10 +25,6 @@ class App extends Component {
 
 	getPriceTypes() {
 		return this.state.priceTypes
-	}
-
-	getPassengerTypes() {
-		return this.state.passengerTypes
 	}
 
 	getTrains() {
@@ -52,7 +47,7 @@ class App extends Component {
 		return this.getInboundTrains().filter(train => train.selectedPrice !== null)[0]
 	}
 
-	trainPriceHandler(selectedTrainPrice) {
+	selectTrainHandler(selectedTrainPrice) {
 		const [direction, trainId, price] = selectedTrainPrice.split('_') // outbound_1_awesome
 		const trains = [...this.getTrains()].map(train => {
 			if (train.direction === direction) {
@@ -64,61 +59,40 @@ class App extends Component {
 		this.setState({ trains })
 	}
 
-	clearSelectionHandler(direction) {
-		console.log(direction)
-		const trains = [...this.getTrains()].map(train => {
-			if (train.direction === direction && train.selectedPrice) {
-				return { ...train, selectedPrice: null }
-			}
-			return train
-		})
-
-		this.setState({ trains })
-	}
-
-	renderTrainsHeader(direction, date, from, to) {
-		return <h2>
-			{ `${direction} ${date} ${from} to ${to}` }
-		</h2>
-	}
-
 	render() {
 
-		return <div>
-			<TrainsHeader
-				direction="Outbound"
-				date={ this.getSearchQuery().outboundDate }
-				from={ this.getSearchQuery().origin }
-				to={ this.getSearchQuery().destination }
-			/>
-			<Trains
-				direction="outbound"
-				priceTypes={ this.getPriceTypes() }
-				trains={ this.getOutboundTrains() }
-				trainPriceHandler={ this.trainPriceHandler.bind(this) }
-			/>
-			<button onClick={this.clearSelectionHandler.bind(this, 'outbound')}>Clear selection</button>
-			<TrainsHeader
-				direction="Inbound"
-				date={ this.getSearchQuery().inboundDate }
-				from={ this.getSearchQuery().destination }
-				to={ this.getSearchQuery().origin }
-			/>
-			<Trains
-				direction="inbound"
-				priceTypes={ this.getPriceTypes() }
-				trains={ this.getInboundTrains() }
-				trainPriceHandler={ this.trainPriceHandler.bind(this) }
-			/>
-			<button onClick={this.clearSelectionHandler.bind(this, 'inbound')}>Clear selection</button>
-			<Basket
-				searchQuery={ this.getSearchQuery() }
-				passengerTypes={ this.getPassengerTypes() }
-				outboundTrain={ this.getSelectedOutboundTrain() }
-				inboundTrain={ this.getSelectedInboundTrain() }
-			/>
-		</div>
+		const data = {
+			searchQuery: this.getSearchQuery(),
+			trains: this.getTrains(),
+			outboundTrain: this.getSelectedOutboundTrain(),
+			inboundTrain: this.getSelectedInboundTrain(),
+			outboundTrains: this.getOutboundTrains(),
+			inboundTrains: this.getInboundTrains(),
+			priceTypes: this.getPriceTypes()
+		}
+		const selectTrainHandler = this.selectTrainHandler.bind(this)
+
+		const searchRoute = () => {
+			return <Search { ...data } selectTrainHandler={ selectTrainHandler } />
+		}
+
+		const checkoutRoute = () => {
+			return <Checkout { ...data } />
+		}
+
+		const confirmationRoute = () => {
+			return <Confirmation { ...data } />
+		}
+
+		const NoRoute = (match) => {
+			return <p>Got nothing for you at <i>{ match.location.pathname }</i></p>
+		}
+
+		return <BrowserRouter>
+			<Match exactly pattern="/search" component={ searchRoute } />
+			<Match exactly pattern="/checkout" render={ checkoutRoute } />
+			<Match exactly pattern="/confirmation" render={ confirmationRoute } />
+			<Miss component={ NoRoute } />
+		</BrowserRouter>
 	}
 }
-
-export default App

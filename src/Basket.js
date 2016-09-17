@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Link from 'react-router/Link'
 import './Basket.css'
 import FormattedDate from './FormattedDate'
 
@@ -15,7 +16,7 @@ export default class Basket extends Component {
 		return <li className="basket-prices__sub-total">£{ subTotal }</li>
 	}
 
-	renderLeg(origin, destination, date, train, passengerTypes, adults, juniors) {
+	renderLeg(origin, destination, date, train, adults, juniors) {
 		const subTotal = (adults * train.prices[train.selectedPrice].adult) + (juniors * train.prices[train.selectedPrice].junior)
 		return <div>
 			<p> { origin } to { destination }</p>
@@ -32,7 +33,7 @@ export default class Basket extends Component {
 		return <p>Please choose your { direction } train</p>
 	}
 
-	getLegTotal(train, passengerTypes, adults, juniors) {
+	getLegTotal(train, adults, juniors) {
 		const selectedPrices = train.prices[train.selectedPrice]
 		const adultCost = selectedPrices.adult * adults
 		const juniorCost = selectedPrices.junior * juniors
@@ -40,10 +41,10 @@ export default class Basket extends Component {
 
 	}
 
-	renderTotal(origin, destination, outboundTrain, inboundTrain, passengerTypes, adults, juniors) {
+	renderTotal(origin, destination, outboundTrain, inboundTrain, adults, juniors) {
 
-		const outboundTotal = outboundTrain ? this.getLegTotal(outboundTrain, passengerTypes, adults, juniors) : 0
-		const inboundTotal = inboundTrain ? this.getLegTotal(inboundTrain, passengerTypes, adults, juniors) : 0
+		const outboundTotal = outboundTrain ? this.getLegTotal(outboundTrain, adults, juniors) : 0
+		const inboundTotal = inboundTrain ? this.getLegTotal(inboundTrain, adults, juniors) : 0
 		const total = outboundTotal + inboundTotal
 
 		if (!total) {
@@ -66,9 +67,16 @@ export default class Basket extends Component {
 		const {
 			searchQuery: { origin, destination, outboundDate, inboundDate, adults, juniors },
 			outboundTrain,
-			inboundTrain,
-			passengerTypes
+			inboundTrain
 		} = this.props
+		const link = this.props.page === 'search' ?
+			<Link to="/checkout">
+				<button>Proceed to checkout</button>
+			</Link>
+			:
+			<Link to="/confirmation">
+				<button>Confirmation</button>
+			</Link>
 
 		return <div className="basket">
 			<h2 className="basket__header">Basket</h2>
@@ -76,7 +84,7 @@ export default class Basket extends Component {
 				<h3 className="basket-leg__header">Outbound</h3>
 				{
 					outboundTrain ?
-					this.renderLeg(origin, destination, outboundDate, outboundTrain, passengerTypes, adults, juniors) :
+					this.renderLeg(origin, destination, outboundDate, outboundTrain, adults, juniors) :
 					this.renderPrompt('outbound')
 				}
 			</section>
@@ -84,13 +92,13 @@ export default class Basket extends Component {
 				<h3 className="basket-leg__header">Inbound</h3>
 				{
 					inboundTrain ?
-					this.renderLeg(destination, origin, inboundDate, inboundTrain, passengerTypes, adults, juniors) :
+					this.renderLeg(destination, origin, inboundDate, inboundTrain, adults, juniors) :
 					this.renderPrompt('inbound')
 				}
 			</section>
-			{ this.renderTotal(origin, destination, outboundTrain, inboundTrain, passengerTypes, adults, juniors) }
+			{ this.renderTotal(origin, destination, outboundTrain, inboundTrain, adults, juniors) }
 			<section className="basket__proceed">
-				<button onClick={ this.proceedOnClick }>Proceed to payment</button>
+				{ link }
 			</section>
 		</div>
 	}

@@ -3,7 +3,6 @@ import FormattedDate from './FormattedDate'
 
 export default class TrainsHeader extends Component {
 
-
 	render() {
 		const { direction, date, from, to } = this.props
 		return <h2>

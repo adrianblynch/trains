@@ -12,10 +12,11 @@ export default class Trains extends Component {
 	}
 
 	trainPriceOnClick(trainId, priceType) {
-		this.props.trainPriceHandler(this.trainPriceValue(trainId, priceType))
+		this.props.selectTrainHandler(this.trainPriceValue(trainId, priceType))
 	}
 
 	render() {
+
 		return <ul className="trains">
 			{
 				this.props.trains.map(train =>
