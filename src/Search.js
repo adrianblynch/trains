@@ -5,20 +5,9 @@ import Basket from './Basket'
 
 export default class TrainSearch extends Component {
 
-	clearSelectionHandler(direction) {
-		const trains = [...this.props.trains].map(train => {
-			if (train.direction === direction && train.selectedPrice) {
-				return { ...train, selectedPrice: null }
-			}
-			return train
-		})
-
-		this.setState({ trains })
-	}
-
 	clearSelectionClick(direction) {
 		return () => {
-			this.clearSelectionHandler(direction)
+			this.props.clearSelectionHandler(direction)
 		}
 	}
 

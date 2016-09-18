@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Match, Miss } from 'react-router'
+import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import Search from './Search'
 import Checkout from './Checkout'
 import Confirmation from './Confirmation'
@@ -59,6 +59,17 @@ export default class App extends Component {
 		this.setState({ trains })
 	}
 
+	clearSelectionHandler(direction) {
+		const trains = [...this.getTrains()].map(train => {
+			if (train.direction === direction && train.selectedPrice) {
+				return { ...train, selectedPrice: null }
+			}
+			return train
+		})
+
+		this.setState({ trains })
+	}
+
 	render() {
 
 		const data = {
@@ -71,9 +82,10 @@ export default class App extends Component {
 			priceTypes: this.getPriceTypes()
 		}
 		const selectTrainHandler = this.selectTrainHandler.bind(this)
+		const clearSelectionHandler = this.clearSelectionHandler.bind(this)
 
 		const searchRoute = () => {
-			return <Search { ...data } selectTrainHandler={ selectTrainHandler } />
+			return <Search { ...data } selectTrainHandler={ selectTrainHandler } clearSelectionHandler={ clearSelectionHandler } />
 		}
 
 		const checkoutRoute = () => {
@@ -85,7 +97,7 @@ export default class App extends Component {
 		}
 
 		const NoRoute = (match) => {
-			return <p>Got nothing for you at <i>{ match.location.pathname }</i></p>
+			return <p>Got nothing for you at <i>{ match.location.pathname }</i>. Do a pretend <Link to="/search">train search</Link>.</p>
 		}
 
 		return <BrowserRouter>
