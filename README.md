@@ -10,3 +10,4 @@ A first look at `creat-react-app` to see what all the fuss is about and a counte
 - No Redux - Upon installing, I went to grab Redux. Instead I decided to leave it out.
 - Data - Rather than doing a request for data, the search data is made available in JSON files.
 - Data - It's not optimised for updating. It's nested more than it should be.
+- `build` is included as it's used as the root of the gh-pages branch.
