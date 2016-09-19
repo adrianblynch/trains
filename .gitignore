@@ -7,7 +7,7 @@ node_modules
 coverage
 
 # production
-build
+# build # Excluded in an attempt to get GH pages to load the build folder
 
 # misc
 .DS_Store
