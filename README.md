@@ -2,6 +2,8 @@
 
 A first look at `creat-react-app` to see what all the fuss is about and a counter project to something I'm working on with Riot.
 
+View it here: https://adrianblynch.github.io/trains/
+
 ## Notes
 
 - fecha - A lightweight date formatting lib.
@@ -11,3 +13,4 @@ A first look at `creat-react-app` to see what all the fuss is about and a counte
 - Data - Rather than doing a request for data, the search data is made available in JSON files.
 - Data - It's not optimised for updating. It's nested more than it should be.
 - `build` is included as it's used as the root of the gh-pages branch.
+- Push `build` folder only to `gh-pages` branch: `git subtree push --prefix build origin gh-pages`
