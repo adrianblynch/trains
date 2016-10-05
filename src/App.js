@@ -101,10 +101,12 @@ export default class App extends Component {
 		}
 
 		return <BrowserRouter>
-			<Match pattern="/search" component={ searchRoute } />
-			<Match pattern="/checkout" render={ checkoutRoute } />
-			<Match pattern="/confirmation" render={ confirmationRoute } />
-			<Miss component={ NoRoute } />
+			<div>
+				<Match pattern="/search" component={ searchRoute } />
+				<Match pattern="/checkout" render={ checkoutRoute } />
+				<Match pattern="/confirmation" render={ confirmationRoute } />
+				<Miss component={ NoRoute } />
+			</div>
 		</BrowserRouter>
 	}
 }

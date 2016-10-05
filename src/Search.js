@@ -32,6 +32,7 @@ export default class TrainSearch extends Component {
 				date={ outboundDate }
 				from={ origin }
 				to={ destination }
+				priceTypes={ priceTypes }
 			/>
 			<Trains
 				direction="outbound"
@@ -45,6 +46,7 @@ export default class TrainSearch extends Component {
 				date={ inboundDate }
 				from={ destination }
 				to={ origin }
+				priceTypes={ priceTypes }
 			/>
 			<Trains
 				direction="inbound"
