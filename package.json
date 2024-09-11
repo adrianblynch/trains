@@ -10,7 +10,7 @@
     "history": "^4.0.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-router": "^4.0.0-2"
+    "react-router": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
